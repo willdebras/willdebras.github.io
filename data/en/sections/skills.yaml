@@ -1,0 +1,35 @@
+# section information
+section:
+  name: Skills
+  id: skills
+  enable: true
+  weight: 2
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true
+
+# Your Skills.
+# Give a summary of you each skill in the summary section.
+skills:
+- name: R
+  icon: "/images/sections/skills/rstats.jpg"
+  summary: "I have three years of experience using R for data cleaning, analysis of survey data, machine learning, and data visualisation. I have experience with functional programming in R and building R packages."
+  url: "https://www.r-project.org/"
+
+- name: R Shiny
+  icon: "/images/sections/skills/shiny.jpg"
+  summary: "I've used R Shiny for two + years for an array of developed applications including a live daily fantasy sports optimization tool, a dashboard for displaying traffic fatalities, and many external client dashboards and internal applications at NORC."
+  url: "https://shiny.rstudio.com/"
+
+- name: Workflow, CI, and Cloud
+  icon: "/images/sections/skills/cloud.png"
+  summary: "I've worked with many tools for automation and continuous integration, including AWS S3 for data management and client delivery, Adobe Spark for data parallelism, and tools like Travis-CI and Github Actions for automation. I've also toyed with tools like Continuous Machine Learning."
+
+- name: Git
+  icon: "/images/sections/skills/git.png"
+  summary: "Day to day, I collaborate on projects with others in Github and have experience using internal tools like bitbucket for collaborative programming."
+  url: "https://github.com/willdebras/"
+
+- name: Dataviz
+  icon: "/images/sections/skills/graph.jpg"
+  summary: "I have experience creating dataviz and have experience building infographics, visualisations, and more with tools like {ggplot2}, plotly, Adobe Illustrator, and D3."

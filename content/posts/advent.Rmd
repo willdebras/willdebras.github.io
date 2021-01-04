@@ -1,0 +1,153 @@
+---
+title: "Automated Advent of Code repo badges"
+author: "Will Bonnell"
+date: 2020-12-10
+categories: ["R"]
+tags: ["R", "webscraping", "aoc2020"]
+hero: /images/blog/starcount.png
+description: Created a repo badge that scrapes your Advent of Code Star count
+menu:
+  sidebar:
+    name: Automated Advent of Code repo badges
+    identifier: advent
+    weight: 500
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Advent of Code
+
+The Advent of Code is an annual Advent calendar of short language-agnostic programming puzzles. This year I have been using the Advent of Code to test my knowledge of programming principles, work on algorithmic efficiency, and practice working in new (to me) languages like Julia. Since I am including my work publicly on github, I also thought it would be interesting to try to create an automated repo badge to show off how many stars I have accumulated. This post is about how I created this badge and how you could include an automatically updating repo badge to show off your star count this advent season.
+
+If you have logged into [adventofcode.com](adventofcode.com), you will know there is a small div to display your username and the number of stars you have accumulated through the challenges.
+
+![](/images/blog/adventtop.png)
+
+To get this into a repo badge, the process will require two main tasks:
+
+1. Scraping the star count from adventofcode.com with session info
+2. Creating the repo badge with the information
+
+
+## Scraping the star count
+
+In order to scrape the star count, we will need to use session information to authenticate to the website. If we do not have session info, the div with an individual's stars would not exist on the main advent of code page. We use code from Benjamin Guinaudeau's `{adventr}` package to scrape this information. First, we log in to [adventofcode.com](adventofcode.com) to generate a session cookie and then grab that cookie from Chrome's developer tools that we can pass to a function to scrape the star count. Benjamin Guinaudea's walkthrough on the [{adventr} package](https://github.com/benjaminguinaudeau/adventr) explains this step in detail.
+
+Then we can use code from adventr to pass a `GET` to our webpage with the session argument equal to the session cookie that pull from developer tools:
+
+```{r, eval=FALSE}
+
+  req <- httr::GET(glue::glue('https://adventofcode.com/'),
+                   httr::add_headers(.headers = c(
+                     "user-agent" = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) 
+                                     AppleWebKit/537.36 (KHTML, like Gecko) 
+                                     Chrome/86.0.4240.198 Safari/537.36",
+                     "cookie" = paste0("session=", cookie)
+                   )))
+
+```
+
+This will return the raw webpage as if we were logged into the page. This will allow us to access the star count.
+
+The scraping of the star count itself then it just isolating an XPath or CSS classes that correspond with the div or node we care about. We can use Chrome or Firefox developer tools, but I like to use the [SelectorGadget Chrome extension](https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb) to find appropriate CSS or HTML tags.
+
+![](/images/blog/gadget.png)
+
+The last section of the code will need to do a few things:
+
+1. Parse the raw HTML from our `GET` call with `xml2::read_html()`.
+2. Extract the node we found from SelectorGadget with `rvest::html_node()`. 
+3. Extract text from that node with `rvest::html_text()`.
+
+```{r, eval=FALSE}
+
+  parsed <- xml2::read_html(req)
+  
+  stars <- rvest::html_node(parsed, ".user")
+  
+  star_text <- rvest::html_text(stars)
+
+```
+
+
+This code will return the div with the class `.user`, which is our username and the star count:
+
+```{r, eval = FALSE}
+
+willdebras 10*
+
+```
+
+## Creating a repo badge
+
+The next step is just creating a repo badge. We can pull a custom SVG badge to include in a `.md` file from [shields.io](https://shields.io/). We can pass a custom URL to generate a badge:
+
+![](/images/blog/badgenotfound.png)
+
+In our use case, we just pass the words "star count" and the text we scraped above, as well as a parameter for color:
+
+```{r, eval=FALSE}
+
+  badge <- paste0("![](https://img.shields.io/badge/", 
+                  "star count", 
+                  "-", 
+                  star_text, 
+                  "-", 
+                  color, 
+                  ".svg)")
+
+```
+
+
+All together, we can functionalize this and call the function in our `.rmd README`.
+
+The full function that takes our cookies as an environment variable, reads and parses the webpage, and generates a badge looks like this:
+
+```{r, eval = FALSE}
+
+
+badge_stars <- function(color = "green", url = NULL, cookie = Sys.getenv("ADVENT_COOKIE")) {
+  
+  req <- httr::GET(glue::glue('https://adventofcode.com/'),
+                   httr::add_headers(.headers = c(
+                     "user-agent" = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) 
+                     AppleWebKit/537.36 (KHTML, like Gecko) 
+                     Chrome/86.0.4240.198 Safari/537.36",
+                     "cookie" = paste0("session=", cookie)
+                   )))
+  
+  
+  #parsed <- httr::content(req, as = "text")
+  
+  parsed <- xml2::read_html(req)
+  
+  stars <- rvest::html_node(parsed, ".user")
+  
+  star_text <- rvest::html_text(stars)
+  
+  
+  
+  badge <- paste0("![](https://img.shields.io/badge/", "star count", "-", star_text, "-", color, ".svg)")
+  
+  if (is.null(url))
+    return(badge)
+  
+  paste0("[", badge, "](", url, ")")
+}
+
+
+```
+
+In our `README`, we can call our function in a code chunk to include our badge on a repo:
+
+
+```{r, eval = FALSE} 
+
+badge_stars(color = "yellow")
+
+```
+
+![](/images/blog/star2.png)
+

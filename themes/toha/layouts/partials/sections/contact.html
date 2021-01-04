@@ -1,0 +1,37 @@
+{{ $sectionID := replace (lower .section.name) " " "-"  }}
+{{ if .section.id }}
+  {{ $sectionID = .section.id }}
+{{ end }}
+
+  
+  
+
+<div class="container-fluid anchor pb-5 contact-section" id="{{ $sectionID }}">
+  {{ if not (.section.hideTitle) }}
+    <h1 class="text-center">{{ .section.name }}</h1>
+  {{ end }}
+  <h5 class="container text-center">
+    For commissions, information about consulting, or to just say hi, contact me in the following ways:<br><br>
+    </h5>
+    
+
+    <div class = "contactme containertest">
+      
+       <ul>
+  <li>
+    <a href="https://twitter.com/_willdebras">Twitter</a>
+  </li>
+  <li>
+    <a href="mailto:wbonnell123@gmail.com">Email</a>
+  </li>
+  <li>
+    <a href="https://www.linkedin.com/in/william-bonnell-85982b3a/">LinkedIn</a>
+  </li>
+</ul>  
+
+    </div>      
+
+    
+
+</div>
+

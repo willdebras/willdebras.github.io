@@ -1,0 +1,81 @@
+# section information
+section:
+  name: Projects
+  id: projects
+  enable: true
+  weight: 4
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true
+
+# filter buttons
+buttons:
+- name: All
+  filter: "all"
+- name: Professional
+  filter: "professional"
+- name: Academic
+  filter: "academic"
+- name: Hobby
+  filter: "hobby"
+
+# your projects
+projects:
+- name: shinykeyboard
+  logo: 
+  role: Author, Contributor
+  timeline: "July 2020 - Present"
+  repo: https://github.com/willdebras/shinykeyboard # If your project is a public repo on GitHub, then provide this link. it will show star count.
+  #url: ""  # If your project is not a public repo but it has a website or any external details url then provide it here. don't provide "repo" and "url" simultaneously.
+  summary: An R package to include a click-able on-screen keyboard in a Shiny application.
+  tags: ["hobby"]
+
+- name: ctar
+  logo: 
+  role: Author, Contributor
+  timeline: "September 2019 - present"
+  repo: https://github.com/willdebras/ctar
+  #url: ""
+  summary: An R package to include interact with the Chicago Transit Authority API to query live Chicago bus and train data.
+  tags: ["professional", "hobby", "fun"]
+
+- name: How the press and public can find common purpose
+  role: Contributor
+  timeline: "December 2019"
+  url: "https://www.americanpressinstitute.org/publications/reports/survey-research/how-the-press-and-public-can-find-common-purpose/single-page/"
+  summary: A white paper with the American Press Institute that assesses Americans' views on the press' role and efficacy in overseeing and providing a check on authority.
+  tags: ["professional", "academic"]
+  
+- name: Daily Fantasy Sports Optimizer
+  logo: 
+  role: Developer
+  timeline: "November 2020"
+  url: http://tomasokal.shinyapps.io/dfsoptimizer
+  #url: ""
+  summary: A web application created with Tomas Okal to generate tailored daily fantasy football lineups using linear optimization. 
+  tags: ["hobby", "fun"]
+
+- name: Recent Migration Patterns in the U.S.
+  logo: 
+  role: Author, Developer
+  timeline: "May 2020"
+  url: https://willdebras.shinyapps.io/migration_2018/
+  #url: ""
+  summary: A piece of scrolly-telling data journalism to show trends in U.S. migration across states. This project was developed as a proof of concept for scrolly-telling in R Shiny.
+  tags: ["hobby", "fun"]
+
+- name: Chicago Vision Zero Dashboard
+  logo: 
+  role: Contributor
+  timeline: "October 2019"
+  repo: https://github.com/Chicago/vision-zero-dashboard
+  summary: A dashboard developed at a hackathon for the city of Chicago to display traffic fatalities data.
+  tags: ["professional"]
+  
+- name: What's My Social Media Age?
+  logo: 
+  role: Contributor
+  timeline: "February 2019"
+  url: https://socialmediaage.norc.org/
+  summary: An NORC-built web application that predicts a user's age based on their social media use, as compared to that of probability-sampled survey data.
+  tags: ["professional"]

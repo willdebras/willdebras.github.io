@@ -1,0 +1,77 @@
+# section information
+section:
+  name: Experiences
+  id: experiences
+  enable: true
+  weight: 3
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true 
+
+# Your experiences
+experiences:
+- company:
+    name: NORC at the University of Chicago
+    url: "https://www.norc.org/"
+    location: Chicago, IL
+    # company overview
+    overview: NORC at the University of Chicago is an objective non-partisan research institution that delivers reliable data and rigorous analysis to guide critical programmatic, business, and policy decisions.
+  positions:
+  - designation: Data Analyst
+    start: December 2020
+    # don't provide end date if you are currently working there. It will be replaced by "Present"
+    # end: Dec 2020
+    # give some points about what was your responsibilities at the company.
+    responsibilities:
+    - Continued to conduct work in machine learning, interactive data visualisation, and statistical methods.
+
+  - designation: Research Assistant
+    start: July 2018
+    end: Nov 2020
+    responsibilities:
+    - Cleaned and analyzed survey data and wrote reports on the analysis for publication
+    - Aided in the development of methodological approaches with statistical and machine learning techniques
+    - Created, tested, and deployed in production natural language models to classify open ended survey text responses
+    - Developed and maintained R shiny applications to output client deliverables, streamline workflows, and visualize data
+    - Built R packages to query data from client APIs and improve reporting methods
+    - Created static and interactive data visualizations including infographics, choropleth and cartogram maps, and charts and graphs for inclusion in NORC publications
+
+- company:
+    name: NextGen America
+    url: "https://nextgenamerica.org/"
+    location: Blacksburg, VA
+    overview: NextGen America (formerly NextGen Climate) was founded by Tom Steyer in 2013 with the mission of encouraging young Americans to register to vote.
+  positions:
+  - designation: Field Organizer
+    start: May 2018 
+    end: June 2018
+    responsibilities:
+    - Managed full-time staffed campaign fellows and volunteers
+    - Orchestrated college voter registration efforts
+    - Developed data-driven call and contact lists for campaign efforts
+    - Managed and QC'd NGP VAN data for the area
+    
+- company:
+    name: University of Amsterdam
+    url: "https://www.virginia.edu/"
+    location: Amsterdam, NL
+    overview: A modern institution with a long and rich history, the UvA is one of Europe’s most prominent research-led universities.
+  positions:
+  - designation: Exchange Student
+    start: August 2016
+    end: January 2017
+    responsibilities:
+    - Participated in an exchange program, studying history and politics
+
+- company:
+    name: University of Virginia
+    url: "https://www.virginia.edu/"
+    location: Charlottesville, VA
+    overview: The University is an iconic public institution of higher education, boasting nationally ranked schools and programs, diverse and distinguished faculty, a major academic medical center and proud history as a renowned research university.
+  positions:
+  - designation: Student and Research Assistant
+    start: August 2014
+    end: May 2018
+    responsibilities:
+    - Studied in the department of politics, achieving a B.A. in International Relations
+    - Served as a research assistant for Daniel Gingerich, aiding in the parsing of Brazilian Census data to prepare for analysis at the QuantCollab at UVA.

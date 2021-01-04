@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R on William Bonnell</title>
+    <link>http://willdebras.github.io/categories/r/</link>
+    <description>Recent content in R on William Bonnell</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 10 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="http://willdebras.github.io/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automated Advent of Code repo badges</title>
+      <link>http://willdebras.github.io/posts/advent/</link>
+      <pubDate>Thu, 10 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://willdebras.github.io/posts/advent/</guid>
+      <description>Advent of CodeThe Advent of Code is an annual Advent calendar of short language-agnostic programming puzzles. This year I have been using the Advent of Code to test my knowledge of programming principles, work on algorithmic efficiency, and practice working in new (to me) languages like Julia. Since I am including my work publicly on github, I also thought it would be interesting to try to create an automated repo badge to show off how many stars I have accumulated.</description>
+    </item>
+    
+    <item>
+      <title>Custom datatable Tooltips in Shiny</title>
+      <link>http://willdebras.github.io/posts/tooltips/</link>
+      <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://willdebras.github.io/posts/tooltips/</guid>
+      <description>TooltipsIf you’ve used a web browser or a programming IDE, you’ve almost certainly come across a tooltip. While tooltips can serve to clarify information in a webpage, natively they also obscure it. These bubbles of information require a user to hover over an element to see the tooltip and get the information. A user might not be aware that this information exists or users using screen-readers might never come across this tooltip.</description>
+    </item>
+    
+    <item>
+      <title>Hypothetical Outcome Plots</title>
+      <link>http://willdebras.github.io/posts/hypothetical_outcome_plots/</link>
+      <pubDate>Wed, 05 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://willdebras.github.io/posts/hypothetical_outcome_plots/</guid>
+      <description>The Uncertainty of UncertaintyConveying uncertainty in data visualisations has become a growing topic in data visualisation circles in the past few years. When considering how to visualise data, one must consider who their audience is and how that audience might interpret a visualisation. In the same way writers adopt different styles of writing to convey information to different audiences, dataviz practitioners might choose color, layout, or typography to suit different audiences (e.</description>
+    </item>
+    
+  </channel>
+</rss>

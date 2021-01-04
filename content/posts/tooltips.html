@@ -1,0 +1,137 @@
+---
+title: "Custom datatable Tooltips in Shiny"
+author: "Will Bonnell"
+date: 2020-12-01
+categories: ["R"]
+tags: ["R", "shiny", "datatable", "tooltip", "dataviz", "football"]
+hero: /images/blog/tooltip_hero.png
+description: Adding tooltips in datatables in R Shiny with consideration to accessibility
+menu:
+  sidebar:
+    name: Custom datatable Tooltips in Shiny
+    identifier: tooltips
+    weight: 500
+---
+
+<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
+
+
+<div id="tooltips" class="section level2">
+<h2>Tooltips</h2>
+<p>If you’ve used a web browser or a programming IDE, you’ve almost certainly come across a tooltip. While tooltips can serve to clarify information in a webpage, natively they also obscure it. These bubbles of information require a user to hover over an element to see the tooltip and get the information. A user might not be aware that this information exists or users using screen-readers might never come across this tooltip.</p>
+</div>
+<div id="when-they-are-useful" class="section level2">
+<h2>When they are useful</h2>
+<p>While tooltips might obscure information, I believe they can be helpful when a user explicitly knows they are there and when they are well-defined in terms of size, color, and outline. For example, in this table for a web application I recently helped create, I include a toggle-tip element to let a user know they can hover and find information. This information is then clearly defined for the user.</p>
+<p><img src="/images/blog/full_table.png" /></p>
+</div>
+<div id="the-cursed-title-attr" class="section level2">
+<h2>The cursed <code>title</code> attr</h2>
+<p>Natively, tooltips are usually assigned to the “title” <code>attr</code> or attribute in a webpage.</p>
+<p><img src="/images/blog/tooltip_ex.png" /></p>
+<p>While these can serve as clarifying information and are native HTML elements requiring no CSS, JS, or other tools, they are not the prettiest way of conveying information and they can present issues in terms of accessibility. This attribute does not show up while inspecting a webpage, therefore it usually will not show up in screen-readers.</p>
+</div>
+<div id="custom-css-tooltips" class="section level2">
+<h2>Custom CSS tooltips</h2>
+<p>One way to ensure accessibility to screen-readers and improve the attractiveness of the tooltip is to create a new element and apply CSS to it to display on hover. A screen reader will pick up this element because it will be defined in the appropriate <code>div</code> or <code>container</code> and we can improve the visibility and attractiveness of the tip.</p>
+<p>To create this tooltip for each cell in the example above for our table of fantasy football players, we will need code in two places.</p>
+<ul>
+<li>a JS callback in the datatable call to create this attribute and stylize it</li>
+<li>some CSS code to change the visibility on hover and focus</li>
+</ul>
+<div id="callbacks" class="section level3">
+<h3>Callbacks</h3>
+<p>The callack and rowCallback parameters of the datatable API are used for a variety of post-processing. We could adjust CSS, specific widths and alignments, and apply or change attributes all based on row, column, or individual cell.</p>
+<p>For our callback to add this tooltip, we can include code that looks like this:</p>
+<pre class="r"><code>datatable(reactive_table(),
+          rowCallback = JS(&quot;function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {&quot;,
+                           
+                 &quot;var full_text = &#39;Tooltip text goes here.&#39;&quot;,
+
+                 &quot;$(&#39;td:eq(3)&#39;, nRow).attr(&#39;data-title&#39;, full_text);&quot;
+                 )
+)</code></pre>
+<p>This <code>rowCallback</code> call lets us process each row before it is rendered with specific Javascript.</p>
+<p>This code will say for nRow in the <code>reactive_table()</code> identified by <code>aData</code>, we are going to perform a function for each index. The function we give it creates a <code>var</code> called <code>full_text</code> that defines the text we want to display on hover.</p>
+<p>The final line of code specifies that to the <code>td</code> element (a datum or cell in a table in html), we are calling the <code>eq()</code> function to target the third element (the third column of the table) iterated over each row. To that we are applying an attribute with <code>.attr</code> called <code>data-title</code> with our variable that we specify above. This will create an attribute that we can then display when hovered.</p>
+<p>We can consider adding more complicated logic to improve this functionality even more. For example, we can customize this tip based on data in our <code>reactive_table()</code>.</p>
+<pre class="r"><code>datatable(reactive_table(),
+          rowCallback = JS(&quot;function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {&quot;,
+                           &quot;if (aData[5]==0) {&quot;,
+                           &quot;var full_text = &#39;This player is in the most optimal lineup.&#39; }&quot;,
+                           &quot;else {&quot;,
+                           &quot;var full_text = &#39;This player would need to earn an additional &#39; 
+                           + aData[5] + &#39; points to be optimal.&#39; &quot;,
+                           &quot;};&quot;,
+                           &quot;$(&#39;td:eq(3)&#39;, nRow).attr(&#39;data-title&#39;, full_text);&quot;,
+                           &quot;$(&#39;td:eq(3)&#39;, nRow).css(&#39;cursor&#39;, &#39;help&#39;);&quot;
+          )
+)</code></pre>
+<p>In this example we refer to a different index of our data to generate this tooltip. If a player needs more points to be considered in our optimizer, we return a tooltip that pipes in the piece of information, which is stored in our fifth column of <code>reactive_table()</code>. If they need 0 more points, we give a custom message saying they are already optimal.</p>
+<p>We also add CSS to the same element to change the cursor to the help cursor.</p>
+<p>We can see the output of the differing tooltips here:</p>
+<p><img src="/images/blog/split_tooltip.png" /></p>
+</div>
+<div id="the-css" class="section level3">
+<h3>the CSS</h3>
+<p>The last step is to prettify these and ensure they remain hidden until you hover over the associated cell. We include several chunks of CSS in the <code>styles.css</code> sheet of our <code>www</code> folder in our shiny application.</p>
+<p>We include three chunks:</p>
+<p>First, we include a chunk to define these attributes to have a relative position as to not displace other elements in our table.</p>
+<pre class="css"><code>
+[data-title] {
+    position: relative;
+}
+</code></pre>
+<p>We use the square bracket selectors <code>[]</code> to specify that we are applying this style to all elements with the <code>data-title</code> attribute. (In this case, they are the cells of the data that have this attribute applied.)</p>
+<p>Next, we add the actual tooltip information with our styles.</p>
+<pre class="css"><code>
+[data-title]:after {
+    content: attr(data-title);
+    background-color: #fed8b1;
+    color: black;
+    font-size: 100%;
+    width:250px;
+    padding: 1px 5px 2px 5px;
+    bottom: -2.5em;
+      border: 4px solid rgb(255, 255, 255);
+      border-radius: 5px;
+    left: 100%;
+    position: absolute;
+    z-index: 99999;
+    visibility: hidden;
+}
+</code></pre>
+<p>Here we specify several things. We tell CSS we want to insert some text after the elements with the <code>data-title</code> attributes. <code>element::after{content: text}</code> lets us apply text directly after an element. A useful example of this is <a href="https://www.w3schools.com/cssref/tryit.asp?filename=trycss_content">including a url after a link</a>.</p>
+<p>In this case, we give it the content of the actual attribute. This is the text we defined to it in our callback above. Next in our code, we specify things like color and font-size. We also give it width and border elements, as well as padding to define a box for our tooltip.</p>
+<p>Importantly, we define several things at the end:</p>
+<ul>
+<li>We tell it <code>left:100%</code> to displace it fully to the right of the cell element, so we can still see the contents of that cell.</li>
+<li>We give it a position of absolute and a very high <code>z-index</code> to ensure it is locked in place on top of all other elements and is not obscured by the table itself.</li>
+<li>We set the <code>visibility</code> to <code>hidden</code> and <code>opacity</code> to 0 so it will not be displayed until it is hovered.</li>
+</ul>
+<p>Lastly, we add CSS to ensure these are displayed on hover.</p>
+<pre class="css"><code>
+[data-title]:hover:after {
+    opacity: 1;
+    transition: all 0.1s ease 0.5s;
+    visibility: visible;
+}
+</code></pre>
+<p>This code will change the opacity and visibility to display after the cell (to the right of the cell) when that cell is hovered.</p>
+</div>
+</div>
+<div id="a-note-on-accessibility" class="section level2">
+<h2>A note on accessibility</h2>
+<p>While this final product creates a much more beautiful and accessible tooltip than our cursed <code>title</code> attribute, there are other things we can consider when it comes to accessibility. Our tooltip is still impossible to be seen by those who do not use a mouse and might only use a keyboard to select elements of a webpage. We can add another chunk of CSS to ensure that when a keyboard user focuses on an element (try tabbing in this webpage to see how you can focus elements) the tooltip would display:</p>
+<pre class="css"><code>
+[data-title]:hover:after {
+    opacity: 1;
+    transition: all 0.1s ease 0.5s;
+    visibility: visible;
+}
+</code></pre>
+<p>While this still might present issues for a user using a touch-screen to select elements, e.g. on mobile, it still greatly improves the accessibility of our tooltips.</p>
+<p>To learn more about other ways developers can make tooltips more accessible, check out this great blog post by Heydon Pickering at Inclusive Components:</p>
+<p><a href="https://inclusive-components.design/tooltips-toggletips/" class="uri">https://inclusive-components.design/tooltips-toggletips/</a></p>
+</div>

@@ -1,0 +1,5 @@
+{{ $heroImage:= "/images/blog/default-hero.jpg"}}
+{{ if  .Params.hero }}
+    {{ $heroImage = .Params.hero }}
+{{ end }}
+{{ return $heroImage }}

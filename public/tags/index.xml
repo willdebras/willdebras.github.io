@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on William Bonnell</title>
+    <link>http://willdebras.github.io/tags/</link>
+    <description>Recent content in Tags on William Bonnell</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 10 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="http://willdebras.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>aoc2020</title>
+      <link>http://willdebras.github.io/tags/aoc2020/</link>
+      <pubDate>Thu, 10 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://willdebras.github.io/tags/aoc2020/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R</title>
+      <link>http://willdebras.github.io/tags/r/</link>
+      <pubDate>Thu, 10 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://willdebras.github.io/tags/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>webscraping</title>
+      <link>http://willdebras.github.io/tags/webscraping/</link>
+      <pubDate>Thu, 10 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://willdebras.github.io/tags/webscraping/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>datatable</title>
+      <link>http://willdebras.github.io/tags/datatable/</link>
+      <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://willdebras.github.io/tags/datatable/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dataviz</title>
+      <link>http://willdebras.github.io/tags/dataviz/</link>
+      <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://willdebras.github.io/tags/dataviz/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>football</title>
+      <link>http://willdebras.github.io/tags/football/</link>
+      <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://willdebras.github.io/tags/football/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shiny</title>
+      <link>http://willdebras.github.io/tags/shiny/</link>
+      <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://willdebras.github.io/tags/shiny/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tooltip</title>
+      <link>http://willdebras.github.io/tags/tooltip/</link>
+      <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://willdebras.github.io/tags/tooltip/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>beer</title>
+      <link>http://willdebras.github.io/tags/beer/</link>
+      <pubDate>Wed, 05 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://willdebras.github.io/tags/beer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ggmap</title>
+      <link>http://willdebras.github.io/tags/ggmap/</link>
+      <pubDate>Wed, 05 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://willdebras.github.io/tags/ggmap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ggplot2</title>
+      <link>http://willdebras.github.io/tags/ggplot2/</link>
+      <pubDate>Wed, 05 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://willdebras.github.io/tags/ggplot2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>leaflet</title>
+      <link>http://willdebras.github.io/tags/leaflet/</link>
+      <pubDate>Wed, 05 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://willdebras.github.io/tags/leaflet/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
