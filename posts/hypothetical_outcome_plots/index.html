@@ -1,0 +1,71 @@
+<!doctype html><html><head><title>Hypothetical Outcome Plots</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><link rel=stylesheet href=/assets/css/bootstrap.min.css><link rel=stylesheet href=/assets/css/layouts/main.css><link rel=stylesheet href=/assets/css/style.css><link rel=stylesheet href=/assets/css/navigators/navbar.css><link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css><link rel=icon type=image/png href=/images/site/favicon.ico><link rel=stylesheet href=/assets/css/style.css><meta name=description content="Hypothetical Outcome Plots"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css><link rel=stylesheet href=/assets/css/layouts/single.css><link rel=stylesheet href=/assets/css/navigators/sidebar.css></head><body data-spy=scroll data-target=#TableOfContents data-offset=80><div class="container-fluid bg-dimmed wrapper"><nav class="navbar navbar-expand-xl top-navbar final-navbar shadow"><div class=container><button class="navbar-toggler navbar-light" id=sidebar-toggler type=button onclick=toggleSidebar()>
+<span class=navbar-toggler-icon></span></button>
+<a class=navbar-brand href=/><img src=/assets/images/main-logo.png>William Bonnell</a>
+<button class="navbar-toggler navbar-light" id=toc-toggler type=button onclick=toggleTOC()>
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse lang-selector" id=top-nav-items><ul class="navbar-nav ml-auto"></ul></div></div><img src=images/site/favicon.ico class=d-none id=main-logo>
+<img src=images/site/favicon.ico class=d-none id=inverted-logo></nav><section class=sidebar-section id=sidebar-section><div class=sidebar-holder><div class=sidebar id=sidebar><input type=text placeholder=Search data-search id=search-box><div class=sidebar-tree><ul class=tree id=tree><li id=list-heading><a href=/posts data-filter=all>Posts</a></li><div class=subtree><li><a href=/posts/advent/>Automated Advent of Code repo badges</a></li><li><a href=/posts/tooltips/>Custom datatable Tooltips in Shiny</a></li><li><a class=active href=/posts/hypothetical_outcome_plots/>Hypothetical Outcome Plots</a></li></div></ul></div></div></div></section><section class=content-section id=content-section><div class=content><div class="container p-0 read-area"><div class="hero-area col-sm-12" id=hero-area style=background-image:url(http://willdebras.github.io/images/blog/analytics.svg)></div><div class=page-content><div class="author-profile ml-auto align-self-lg-center"><img class=rounded-circle src=/images/author/profile.jpg><h5 class=author-name>Will Bonnell</h5><p>February 5, 2020</p></div><div class=title><h1>Hypothetical Outcome Plots</h1></div><div class=post-content id=post-content><link href=/rmarkdown-libs/anchor-sections/anchor-sections.css rel=stylesheet><script src=/rmarkdown-libs/anchor-sections/anchor-sections.js></script><div id=the-uncertainty-of-uncertainty class="section level3"><h3>The Uncertainty of Uncertainty</h3><p>Conveying uncertainty in data visualisations has become a growing topic in data visualisation circles in the past few years. When considering how to visualise data, one must consider who their audience is and how that audience might interpret a visualisation. In the same way writers adopt different styles of writing to convey information to different audiences, dataviz practitioners might choose color, layout, or typography to suit different audiences (e.g. making a color palette color blind friendly or right-aligning a visualization designed for <a href=https://en.wikipedia.org/wiki/Right-to-left>RTL-writing</a> communities). The options a dataviz practitioner has though are not limited only to the aesthetic design choices. The practitioner’s decision to use a certain type of visualisation itself is contingent on the audience’s ability to understand it.</p><p>This is especially true when visualising the uncertainty we as researchers know exist. While a statistician or analyst in your company or academic department might understand the error bars on a bar chart you send them, the average person might not. This has prompted discussion about ways we visualise uncertainty.</p></div><div id=how-we-historically-visualise-uncertainty class="section level3"><h3>How We Historically Visualise Uncertainty</h3><p>Conventionally, one might express the uncertainty of a mean value by creating a confidence interval of the difference of a mean and standard deviation. We could express that deviation in an error bar, like such:</p><pre class=r><code>library(ggplot2)
+library(dplyr)
+## 
+## Attaching package: &#39;dplyr&#39;
+## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag
+## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union
+
+iris_sum &lt;- iris %&gt;%
+  group_by(Species) %&gt;%
+  summarise(mean = mean(Petal.Length),
+            sd = sd(Petal.Length))
+## `summarise()` ungrouping output (override with `.groups` argument)
+
+g &lt;- ggplot(iris_sum, aes(Species, mean, fill = Species)) +
+  geom_col() +
+  geom_errorbar(aes(ymin = mean - sd, ymax = mean + sd), width = 0.2) +
+  labs(y = &quot;Petal length&quot;) +
+  theme_minimal()
+g</code></pre><p><img src=/posts/hypothetical_outcome_plots_files/figure-html/error-1.png width=672></p><p>While this creates clarity that there is <em>some</em> uncertainty, it might also convey that probabilistically the likelihood of this value can only fall in this bar and is equally likely to be any point within these bars. One might be able to better express this uncertainty by creating a violin plot of distributions of simualated or real values.</p><p>Say we ran a benchmark on two functions to test if one was faster than another. We could run it a few hundred times and create distributions of these two benchmarks and plot them:</p><pre class=r><code>mb &lt;- microbenchmark(x, y, n = 50)
+ggplot2::autoplot(mb) +
+  theme_minimal()
+</code></pre><p><img src=/images/blog/distribution.png></p><p>These plots are great for allowing an individual to infer density of values (or probabilities). They could potentially say “about 50% of all tests in both of these tests fall around 30-35 seconds.” This is good for conveying the inference that these tests do not have much difference in run time.</p></div><div id=alternatives class="section level3"><h3>Alternatives</h3><p>In the era of modern data visualisation we have more tools at hand than conventional depictions of uncertainty in error bars or violin plots. A recent development in conveying of uncertainty is the innovation of hypothetical outcome plots (HOPs), which are animated plots or graphs that show potential values in a distribution (e.g. Bayesian MCMC sampled data, bootstrapped data, or a real distribution like our plot above).</p><p>HOPs have the advantage of requiring relatively little background knowledge to interpret as they only require a viewer to understand a single real value at different times. In <a href=http://users.eecs.northwestern.edu/~jhullman/HOPS_PLOS_preprint.pdf>testing on subjects</a>, these outperformed error bars consistently and outperformed violin plots in certain one-variable trials. Subjects were better able to estimate cumulative densities when variance was low when using HOPs than violin plots or error bars.</p></div><div id=creating-hops class="section level3"><h3>Creating HOPs</h3><p>Creating HOPs in R is pretty simple with {gganimate}. For a one-variable trials like Hullman, Resnick, and Adar create, we can use <code>geom_errorbar()</code> as we did above, but we will add a <code>transition_states()</code> call to animate it.</p><p>Let’s look at our benchmark data:</p><pre class=r><code>
+mb &lt;- read.csv(&quot;../../content/posts/mbtest.csv&quot;)
+head(mb)
+##   X                                          expr        time
+## 1 1        df.list &lt;- lapply(file.list, read_csv) 17483605629
+## 2 2 df.list &lt;- future_lapply(file.list, read_csv) 11911994096
+## 3 3 df.list &lt;- future_lapply(file.list, read_csv)  9941619312
+## 4 4        df.list &lt;- lapply(file.list, read_csv) 17726280555
+## 5 5 df.list &lt;- future_lapply(file.list, read_csv) 12778679896
+## 6 6        df.list &lt;- lapply(file.list, read_csv) 20202289703</code></pre><p>We simply need to assign <code>frame</code> to each of these expressions and then set the <code>transition_states()</code> function to reference <code>frame</code>. In this case we want <code>frame</code> to equal <code>1</code> for one of each function, and then <code>frame</code> to equal <code>2</code> for one of each function, and so on. We can just use the rep function to assign this column. Frame should be unique for whatever you are animating. This is the output we will feed into our ggplot:</p><pre class=r><code>mb1 &lt;- mb %&gt;%
+  mutate(expr = as.character(expr)) %&gt;%
+  mutate(frame = rep(1:(100/2), each = 2))
+
+head(mb1)
+##   X                                          expr        time frame
+## 1 1        df.list &lt;- lapply(file.list, read_csv) 17483605629     1
+## 2 2 df.list &lt;- future_lapply(file.list, read_csv) 11911994096     1
+## 3 3 df.list &lt;- future_lapply(file.list, read_csv)  9941619312     2
+## 4 4        df.list &lt;- lapply(file.list, read_csv) 17726280555     2
+## 5 5 df.list &lt;- future_lapply(file.list, read_csv) 12778679896     3
+## 6 6        df.list &lt;- lapply(file.list, read_csv) 20202289703     3</code></pre><p>Then we create our <code>ggplot()</code> with the data argument set to the data set and the aesthetics set to expr and time like we would set up a normal bar chart, but instead of using geom_bar() we will just use <code>geom_errorbar()</code> and then animate its movement. We set <code>transition_states()</code> to reference the <code>frame</code> column and then can set the <code>transition_length</code> parameter to equal 2 frames.</p><pre class=r><code>library(gganimate)
+library(gifski)
+## Warning: package &#39;gifski&#39; was built under R version 4.0.3
+ggplot(mb1, aes(expr, time)) + 
+  geom_errorbar(aes(ymin = time, ymax = time)) + 
+  theme_minimal() +
+  theme(axis.title.y = element_text(margin = margin(r = 20))) +
+  transition_states(frame, transition_length = 2, state_length = 1) +
+  enter_fade() + 
+  exit_shrink() </code></pre><p><img src=/posts/hypothetical_outcome_plots_files/figure-html/ggpl-1.gif></p><p>We can then add a <code>shadow_mark()</code> element to keep the past and future frames of the animation so you can see all the potential values and set these to a light grey so they don’t interrupt the animation:</p><pre class=r><code>ggplot(mb1, aes(expr, time)) + 
+  geom_errorbar(aes(ymin = time, ymax = time)) + 
+  theme_minimal() +
+  theme(axis.title.y = element_text(margin = margin(r = 20))) +
+  transition_states(frame, transition_length = 2, state_length = 1) +
+  enter_fade() + 
+  exit_shrink() +
+  ease_aes(&#39;sine-in-out&#39;) +
+  shadow_mark(past = TRUE, future = TRUE, color = &quot;#d3d3d3&quot;) + 
+  labs(x = &quot;Function&quot;, y = &quot;Time to run&quot;)</code></pre><p><img src=/posts/hypothetical_outcome_plots_files/figure-html/gg-1.gif></p><p>Voila! We have our first one-variable hypothetical outcome plot representing the distribution of our code benchmarks above.</p></div><div id=more-examples class="section level3"><h3>More examples</h3><p>For more information about how one can create synthetic/simulated data for the creation of HOPs, I recommend Claus Wilke’s <code>rstudio::conf</code> <a href=https://resources.rstudio.com/rstudio-conf-2019/visualizing-uncertainty-with-hypothetical-outcomes-plots>2019 presentation</a> on the subject. His slides have examples of bootstrapping and sampling data for inclusion in HOPs.</p></div></div><hr><div class="row next-prev-navigator"><div class="col-md-6 previous-article"><a href=/posts/tooltips/ class="btn btn-outline-info"><span><i class="fas fa-chevron-circle-left"></i>Prev</span><br><span>Custom datatable Tooltips in Shiny</span></a></div></div><hr></div></div></div></section><section class=toc-section id=toc-section></section></div><footer class="container-fluid text-center align-content-center footer pb-2"><div class="container pt-5"><div class="row text-left"><div class="col-md-4 col-sm-12"><h5>Navigation</h5><ul><li class=nav-item><a class=smooth-scroll href=#about>About</a></li><li class=nav-item><a class=smooth-scroll href=#skills>Skills</a></li><li class=nav-item><a class=smooth-scroll href=#experiences>Experiences</a></li><li class=nav-item><a class=smooth-scroll href=#projects>Projects</a></li><li class=nav-item><a class=smooth-scroll href=#recent-posts>Recent Posts</a></li></ul></div><div class="col-md-4 col-sm-12"><h5>Contact me:</h5><ul><li><span>Email:</span> <span>wbonnell123@gmail.com</span></li><li><span>Phone:</span> <span>+18048942216</span></li></ul></div></div></div><hr><div class=container><div class="row text-left"><div class=col-md-4><a id=theme href=https://github.com/hossainemruz/toha target=#><img src=/assets/images/inverted-logo.png>
+Toha</a></div><div class="col-md-4 text-center">© 2020 Copyright.</div><div class="col-md-4 text-right"><a id=hugo href=https://gohugo.io/>Powered by
+<img src=/assets/images/hugo-logo-wide.svg alt="Hugo Logo" height=18></a></div></div></div></footer><script src=/assets/js/jquery-3.4.1.min.js></script><script src=/assets/js/popper.min.js></script><script src=/assets/js/bootstrap.min.js></script><script src=/assets/js/navbar.js></script><script src=/assets/js/main.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js></script><script src=/assets/js/single.js></script><script>hljs.initHighlightingOnLoad();</script></body></html>
