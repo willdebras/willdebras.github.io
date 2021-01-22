@@ -20,6 +20,12 @@ skills:
   icon: "/images/sections/skills/shiny.jpg"
   summary: "I've used R Shiny for two + years for an array of developed applications including a live daily fantasy sports optimization tool, a dashboard for displaying traffic fatalities, and many external client dashboards and internal applications at NORC."
   url: "https://shiny.rstudio.com/"
+  
+
+- name: D3.js
+  icon: "/images/sections/skills/d3.png"
+  summary: "I have about a year of experience using D3.js to create interactive data visualisations. I've worked with D3, R2D3 in R Shiny, and have used vanilla JS and JQuery for manipulation of features in D3 visualisations."
+  url: "https://d3js.org/"
 
 - name: Workflow, CI, and Cloud
   icon: "/images/sections/skills/cloud.png"
@@ -32,4 +38,5 @@ skills:
 
 - name: Dataviz
   icon: "/images/sections/skills/graph.jpg"
-  summary: "I have experience creating dataviz and have experience building infographics, visualisations, and more with tools like {ggplot2}, plotly, Adobe Illustrator, and D3."
+  summary: "Outside of D3 and R Shiny, I am skilled in making static visualisations and infographics, usually starting from {ggplot2} graphs and editing in Adobe Illustrator. I also work in SVG, CSS, and JQuery for web and information viz development."
+  url: "https://willdebras.github.io/viz/"
