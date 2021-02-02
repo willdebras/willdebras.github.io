@@ -36,7 +36,7 @@ projects:
   timeline: "September 2019 - present"
   repo: https://github.com/willdebras/ctar
   #url: ""
-  summary: An R package to include interact with the Chicago Transit Authority API to query live Chicago bus and train data.
+  summary: An R package to interact with the Chicago Transit Authority API to query live Chicago bus and train data and get shapefiles for transit routes.
   tags: ["professional", "hobby", "fun"]
 
 - name: How the press and public can find common purpose
