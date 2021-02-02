@@ -23,9 +23,9 @@ experiences:
     # end: Dec 2020
     # give some points about what was your responsibilities at the company.
     responsibilities:
-    - Served as lead developer on a large client R Shiny application
-    - Continued to conduct work in machine learning, interactive data visualisation, and statistical methods
-    - Led the development of a client-delivered R Shiny application and the development of subsequent interactive visualisations in D3.js
+    - Managed data cleaning procedures on 'big data' source for a large enterprise project
+    - Led the development of a client-delivered R Shiny application and the development of interactive visualisations in SVG/vanilla JS and D3.js
+    - Managed client data deliveries for large enterprise project with AWS S3
 
   - designation: Research Assistant
     start: July 2018
