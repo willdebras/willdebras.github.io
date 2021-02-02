@@ -13,12 +13,12 @@ section:
 skills:
 - name: R
   icon: "/images/sections/skills/rstats.jpg"
-  summary: "I have three years of experience using R for data cleaning, analysis of survey data, machine learning, and data visualisation. I have experience with functional programming in R and building R packages."
+  summary: "I have over three years of experience using R for data cleaning, analysis of survey data, machine learning, and data visualisation. I have experience with functional programming in R and building R packages."
   url: "https://www.r-project.org/"
 
 - name: R Shiny
   icon: "/images/sections/skills/shiny.jpg"
-  summary: "I've used R Shiny for three years for an array of applications and dashboards at NORC and for contracted clients. I have experience working with Shiny modules and {golem}, building packages to custom bind Shiny inputs, and writing JS for Shiny."
+  summary: "I've used R Shiny for over two years to build an array of applications and dashboards for professional clients. I have experience working with Shiny modules and {golem}, building packages to custom bind Shiny inputs, and writing JS for Shiny."
   url: "https://shiny.rstudio.com/"
   
 
