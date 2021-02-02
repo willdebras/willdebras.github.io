@@ -18,7 +18,7 @@ skills:
 
 - name: R Shiny
   icon: "/images/sections/skills/shiny.jpg"
-  summary: "I've used R Shiny for two + years for an array of developed applications including a live daily fantasy sports optimization tool, a dashboard for displaying traffic fatalities, and many external client dashboards and internal applications at NORC."
+  summary: "I've used R Shiny for three years for an array of applications and dashboards at NORC and for contracted clients. I have experience working with Shiny modules and {golem}, building packages to custom bind Shiny inputs, and writing JS for Shiny."
   url: "https://shiny.rstudio.com/"
   
 
