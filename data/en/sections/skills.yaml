@@ -18,25 +18,29 @@ skills:
 
 - name: R Shiny
   icon: "/images/sections/skills/shiny.jpg"
-  summary: "I've used R Shiny for over two years to build an array of applications and dashboards for professional clients. I have experience working with Shiny modules and {golem}, building packages to custom bind Shiny inputs, and writing JS for Shiny."
+  summary: "I've used R Shiny for about three years to build an array of applications and dashboards for professional clients. I have experience working with Shiny modules and {golem}, building packages to custom bind Shiny inputs, and writing JS for Shiny."
   url: "https://shiny.rstudio.com/"
-  
 
 - name: D3.js
   icon: "/images/sections/skills/d3.png"
-  summary: "I have about a year of experience using D3.js to create interactive data visualisations. I've worked with D3, R2D3 in R Shiny, and have used vanilla JS and JQuery for manipulation of features in D3 visualisations."
+  summary: "I have about two years of experience using D3.js to create interactive data visualisations. I've worked with D3, R2D3 in R Shiny, and have used vanilla JS and JQuery for manipulation of features in D3 visualisations."
   url: "https://d3js.org/"
-
-- name: Workflow, CI, and Cloud
-  icon: "/images/sections/skills/cloud.png"
-  summary: "I've worked with many tools for automation and continuous integration, including AWS S3 for data management and client delivery, Adobe Spark for data parallelism, and tools like Travis-CI and Github Actions for automation. I've also toyed with tools like Continuous Machine Learning."
-
+  
+- name: Frontend development
+  icon: "/images/sections/skills/reactjs.png"
+  summary: "I'm a skilled CSS developer and have written production CSS for various dashboards and webpages. I'm also experienced with various JavaScript frameworks. I have experience developing components in React.js, using D3 in React, and have toyed with other frameworks like Svelte."
+  url: "https://willdebras.github.io/viz/"
+  
 - name: Git
   icon: "/images/sections/skills/git.png"
   summary: "Day to day, I collaborate on projects with others in Github and have experience using internal tools like bitbucket for collaborative programming."
   url: "https://github.com/willdebras/"
 
-- name: Dataviz
-  icon: "/images/sections/skills/graph.jpg"
-  summary: "Outside of D3 and R Shiny, I am skilled in making static visualisations and infographics, usually starting from {ggplot2} graphs and editing in Adobe Illustrator. I also work in SVG, CSS, and JQuery for web and information viz development."
-  url: "https://willdebras.github.io/viz/"
+- name: GSAP ScrollTrigger
+  icon: "/images/sections/skills/gsap.png"
+  summary: "At NORC I have led an initiative to create scrollytelling products for the organization. I'm proficient in utilizing Greensock animations, D3 animations, and utilizing the ScrollTrigger.js library to create scrollytelling articles."
+
+- name: Workflow, CI, and Cloud
+  icon: "/images/sections/skills/cloud.png"
+  summary: "I've worked with many tools for automation and continuous integration, including AWS S3 for data management and client delivery, Adobe Spark for data parallelism, and tools like Travis-CI and Github Actions for automation. I've also toyed with tools like Continuous Machine Learning."
+

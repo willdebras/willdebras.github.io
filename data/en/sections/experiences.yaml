@@ -23,6 +23,8 @@ experiences:
     # end: Dec 2020
     # give some points about what was your responsibilities at the company.
     responsibilities:
+    - Helped lead an initiative to develop a D3 components library
+    - Led initiative to create scrollytelling products with GSAP and ScrollTrigger.js
     - Managed data cleaning procedures on 'big data' source for a large enterprise project
     - Led the development of a client-delivered R Shiny application and the development of interactive visualisations in SVG/vanilla JS and D3.js
     - Managed client data deliveries for large enterprise project with AWS S3

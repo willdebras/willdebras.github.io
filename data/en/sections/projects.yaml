@@ -38,6 +38,15 @@ projects:
   #url: ""
   summary: An R package to interact with the Chicago Transit Authority API to query live Chicago bus and train data and get shapefiles for transit routes.
   tags: ["professional", "hobby", "fun"]
+  
+- name: Components library
+  logo: 
+  role: Author, Contributor
+  timeline: "March 2021 - present"
+  repo: https://github.com/willdebras/components
+  #url: ""
+  summary: My personal components library built in React.js, deployed on Storybook. This library includes components I built in Josh Comeau's CSS for JavaScript Developers course, the Fullstack D3 course, and some I built just for fun! 
+  tags: ["hobby", "fun"]
 
 - name: How the press and public can find common purpose
   role: Contributor
