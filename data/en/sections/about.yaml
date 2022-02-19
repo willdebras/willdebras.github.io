@@ -8,17 +8,17 @@ section:
   template: sections/about.html
 
 # your designation
-designation: Data Analyst
+designation: Fullstack Developer
 # your company information
 company:
-  name: NORC at the University of Chicago
-  url: "https://www.norc.org/Pages/default.aspx"
+  name: Oliver Wyman Actuarial
+  url: "https://www.oliverwyman.com/index.html"
 
 # your resume. this file path should be relative to you "static" directory
 resume: "files/resume.pdf"
 
 # a summary about you
-summary: 'I am a data analyst with three years of working experience at NORC at the University of Chicago. I also help organize a group/set of events called the [R Community Collaboratives](https://chircollab.github.io/). In my job I work in languages like R and Julia for an array of purposes like data cleaning, data visualisation, statistical analysis, and machine learning. I also work with tools like R Shiny, D3, and Illustrator for the development of web applications, infographics, and webpages. My current work involves building a components library of D3 visualizations. In my free time, I like to cook, bake, and brew beer!'
+summary: 'I am a developer with four years of working experience building data visualizations, developer and business intelligence tools, and doing data science. I primarily work in R and Rshiny, D3 and Svelte, and vanilla JS/CSS. On the side, I build freelance sites and visualizations. My most recent gig is helping to build out a visualization library for Microsoft Research called Datamations. In my free time, I like to cook, bake, and brew beer!'
 
 # your social links
 # give as many as you want. use font-awesome for the icons.

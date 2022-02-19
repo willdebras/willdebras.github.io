@@ -11,22 +11,36 @@ section:
 # Your experiences
 experiences:
 - company:
+    name: Oliver Wyman Actuarial Consulting
+    url: "https://www.oliverwyman.com/index.html"
+    location: Chicago, IL
+    overview: Oliver Wyman Actuarial is a managerial consulting firm. At the company I work on a small team of developers who build and support applications for actuaries, stakeholders, and dozens of clients
+  positions:
+  - designation: Consultant, fullstack development
+    start: September 2021 
+    responsibilities:
+    - Led the development of nearly a dozen client dashboards
+    - Developed rich features like CRUD tables to interact with databases, novel data visualizations, and new components
+    - Led an innovation project to create a library of Svelte components for use in serverless sites
+    - Worked on a team to build new infrastructure for application deployments with cloud-computing services and containerization
+   
+- company:
     name: NORC at the University of Chicago
     url: "https://www.norc.org/"
     location: Chicago, IL
     # company overview
-    overview: NORC at the University of Chicago is an objective non-partisan research institution that delivers reliable data and rigorous analysis to guide critical programmatic, business, and policy decisions.
+    overview: NORC at the University of Chicago is a non-partisan research institution that delivers reliable data and rigorous analysis to guide critical programmatic, business, and policy decisions.
   positions:
   - designation: Data Analyst
     start: December 2020
     # don't provide end date if you are currently working there. It will be replaced by "Present"
-    # end: Dec 2020
+    end: September 2021
     # give some points about what was your responsibilities at the company.
     responsibilities:
     - Helped lead an initiative to develop a D3 components library
     - Led initiative to create scrollytelling products with GSAP and ScrollTrigger.js
     - Managed data cleaning procedures on 'big data' source for a large enterprise project
-    - Led the development of a client-delivered R Shiny application and the development of interactive visualisations in SVG/vanilla JS and D3.js
+    - Led the development of several client-delivered R Shiny application and the development of interactive visualisations in SVG/vanilla JS and D3.js
     - Managed client data deliveries for large enterprise project with AWS S3
 
   - designation: Research Assistant
